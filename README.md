@@ -1,115 +1,112 @@
-Foundry Fund Me F25
-A crowdfunding smart contract built with the Foundry framework. This project allows users to fund the contract with ETH, enforces a minimum USD contribution using Chainlink price feeds, and enables only the contract owner to withdraw the funds.
-GitHub
+# 🏛️ Foundry Fund Me F25
 
-Features
-ETH Funding: Users can fund the contract with ETH.
+A smart contract development project built with [Foundry](https://book.getfoundry.sh/) to demonstrate Solidity development, testing, and deployment. This project replicates the functionality of a basic "Fund Me" decentralized application similar to the one built in the `solidity-fcc` course by Patrick Collins, but adapted to Foundry tooling and workflow.
 
-Minimum USD Contribution: Enforces a minimum contribution amount in USD (e.g., $5) using Chainlink price feeds.
+---
 
-Owner Withdrawals: Only the contract owner can withdraw the accumulated funds.
+## 📁 Project Structure
 
-Fallback and Receive Functions: Supports fallback and receive functions to handle ETH sent directly to the contract.
+```
+foundry-fund-me-f25/
+├── lib/                     # External dependencies (e.g., Chainlink contracts)
+├── script/                  # Deployment and interaction scripts
+│   └── DeployFundMe.s.sol   # Deploys the FundMe contract
+├── src/                     # Source contracts
+│   ├── FundMe.sol           # Main FundMe contract
+│   ├── PriceConverter.sol   # Library for price feed conversion
+│   └── interfaces/          # Interfaces (e.g., AggregatorV3Interface)
+├── test/                    # Unit and integration tests
+│   └── FundMe.t.sol         # Test file for FundMe
+├── .env                     # Environment variables (e.g., private keys)
+├── foundry.toml             # Foundry configuration
+└── README.md                # This file
+```
 
-Gas Optimization: Includes a cheaperWithdraw function for gas-efficient withdrawals.
-GitHub
-+1
-GitHub
-+1
-GitHub
+---
 
-Getting Started
-Prerequisites
-Git: Ensure Git is installed. Verify with:
+## 🚀 Getting Started
 
-bash
-Copy
-Edit
-git --version
-Foundry: Install Foundry by following the instructions at Foundry Book. Verify installation with:
+### Prerequisites
 
-bash
-Copy
-Edit
-forge --version
-Installation
-Clone the Repository:
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) (`forge`, `cast`)
+- [Node.js](https://nodejs.org/en) + [yarn](https://classic.yarnpkg.com/en/docs/install/)
+- (Optional) [Anvil](https://book.getfoundry.sh/anvil/)
 
-bash
-Copy
-Edit
+### Installation
+
+```bash
 git clone https://github.com/arcanemg/foundry-fund-me-f25.git
 cd foundry-fund-me-f25
-Install Dependencies:
-If using a Makefile, you can run:
-
-bash
-Copy
-Edit
-make
-Alternatively, manually install dependencies:
-
-bash
-Copy
-Edit
 forge install
-Usage
-Build Contracts
-Compile the smart contracts:
+```
 
-bash
-Copy
-Edit
+---
+
+## 🔨 Compile
+
+```bash
 forge build
-Run Tests
-Execute the test suite:
+```
 
-bash
-Copy
-Edit
+---
+
+## 🧪 Run Tests
+
+```bash
 forge test
-Format Code
-Automatically format your Solidity code:
+```
 
-bash
-Copy
-Edit
-forge fmt
-Gas Snapshot
-Generate a gas usage snapshot:
+To run with verbose logging:
 
-bash
-Copy
-Edit
-forge snapshot
-Deploy Contracts
-To deploy the contract, use the following command:
+```bash
+forge test -vvvv
+```
 
-bash
-Copy
-Edit
-forge script script/DeployFundMe.s.sol:DeployFundMe --rpc-url <RPC_URL> --private-key <PRIVATE_KEY> --broadcast
-Replace <RPC_URL> with your Ethereum node RPC URL and <PRIVATE_KEY> with your wallet's private key.
+---
 
-Project Structure
-src/: Contains the main Solidity contracts.
+## 🔐 Environment Setup
 
-script/: Deployment and interaction scripts.
+Create a `.env` file in the root directory:
 
-test/: Test contracts for unit testing.
+```
+PRIVATE_KEY=your_private_key
+RPC_URL=your_rpc_url
+ETHERSCAN_API_KEY=your_etherscan_api_key
+```
 
-lib/: External libraries and dependencies.
+---
 
-foundry.toml: Foundry configuration file.
+## 📜 Deploy the Contract
 
-Makefile: Automation commands for building and testing.
-GitHub
-+2
-GitHub
-+2
-GitHub
-+2
-updraft.cyfrin.io
+Use the provided `script/DeployFundMe.s.sol` script:
 
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+```bash
+forge script script/DeployFundMe.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
+```
+
+To verify the contract on Etherscan:
+
+```bash
+forge verify-contract --compiler-version v0.8.18 <DEPLOYED_ADDRESS> src/FundMe.sol:FundMe $ETHERSCAN_API_KEY
+```
+
+---
+
+## 🧠 Concepts Covered
+
+- Constructor injection of price feeds
+- Chainlink Oracle integrations
+- Solidity libraries (`PriceConverter`)
+- Gas optimizations (`constant`, `immutable`)
+- Access control (`onlyOwner`)
+- Fallback and receive functions
+- Unit testing with Foundry
+- Script-based deployments
+
+---
+
+## 🤝 Acknowledgements
+
+Built by [@arcanemg](https://github.com/arcanemg) as a Foundry implementation of the original `hardhat-fund-me` project from Patrick Collins' [Solidity Course](https://github.com/PatrickAlphaC/full-blockchain-solidity-course-js).
+
+---
