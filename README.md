@@ -1,66 +1,115 @@
-## Foundry
+Foundry Fund Me F25
+A crowdfunding smart contract built with the Foundry framework. This project allows users to fund the contract with ETH, enforces a minimum USD contribution using Chainlink price feeds, and enables only the contract owner to withdraw the funds.
+GitHub
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Features
+ETH Funding: Users can fund the contract with ETH.
 
-Foundry consists of:
+Minimum USD Contribution: Enforces a minimum contribution amount in USD (e.g., $5) using Chainlink price feeds.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+Owner Withdrawals: Only the contract owner can withdraw the accumulated funds.
 
-## Documentation
+Fallback and Receive Functions: Supports fallback and receive functions to handle ETH sent directly to the contract.
 
-https://book.getfoundry.sh/
+Gas Optimization: Includes a cheaperWithdraw function for gas-efficient withdrawals.
+GitHub
++1
+GitHub
++1
+GitHub
 
-## Usage
+Getting Started
+Prerequisites
+Git: Ensure Git is installed. Verify with:
 
-### Build
+bash
+Copy
+Edit
+git --version
+Foundry: Install Foundry by following the instructions at Foundry Book. Verify installation with:
 
-```shell
-$ forge build
-```
+bash
+Copy
+Edit
+forge --version
+Installation
+Clone the Repository:
 
-### Test
+bash
+Copy
+Edit
+git clone https://github.com/arcanemg/foundry-fund-me-f25.git
+cd foundry-fund-me-f25
+Install Dependencies:
+If using a Makefile, you can run:
 
-```shell
-$ forge test
-```
+bash
+Copy
+Edit
+make
+Alternatively, manually install dependencies:
 
-### Format
+bash
+Copy
+Edit
+forge install
+Usage
+Build Contracts
+Compile the smart contracts:
 
-```shell
-$ forge fmt
-```
+bash
+Copy
+Edit
+forge build
+Run Tests
+Execute the test suite:
 
-### Gas Snapshots
+bash
+Copy
+Edit
+forge test
+Format Code
+Automatically format your Solidity code:
 
-```shell
-$ forge snapshot
-```
+bash
+Copy
+Edit
+forge fmt
+Gas Snapshot
+Generate a gas usage snapshot:
 
-### Anvil
+bash
+Copy
+Edit
+forge snapshot
+Deploy Contracts
+To deploy the contract, use the following command:
 
-```shell
-$ anvil
-```
+bash
+Copy
+Edit
+forge script script/DeployFundMe.s.sol:DeployFundMe --rpc-url <RPC_URL> --private-key <PRIVATE_KEY> --broadcast
+Replace <RPC_URL> with your Ethereum node RPC URL and <PRIVATE_KEY> with your wallet's private key.
 
-### Deploy
+Project Structure
+src/: Contains the main Solidity contracts.
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+script/: Deployment and interaction scripts.
 
-### Cast
+test/: Test contracts for unit testing.
 
-```shell
-$ cast <subcommand>
-```
+lib/: External libraries and dependencies.
 
-### Help
+foundry.toml: Foundry configuration file.
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Makefile: Automation commands for building and testing.
+GitHub
++2
+GitHub
++2
+GitHub
++2
+updraft.cyfrin.io
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
